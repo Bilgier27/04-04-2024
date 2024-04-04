@@ -1,0 +1,55 @@
+#Elaborar un programa en python que capture la siguiente informacion de un estudiante
+#Codigo, Nombres, Apellidos, Contacto, Correo, Edad, Estrato, Sexo, Telefono.
+#En caso de que no aplique guardar su contacto en un lista llamada pendiente.
+ls_Estudiantes_pendientes = []
+Mi_diccionario = {}
+import os
+
+   
+def fnt_agregar(diccionario, id, Codigo, Nombres, Apellidos, Contacto, Correo, Edad, Estrato, Sexo, Telefono):
+    if id == '' or Codigo == '' or Nombres == '' or Apellidos == '' or Contacto == '' or Correo == '' or Edad == '' or Estrato == '' or Sexo == '' or Telefono == '':
+        enter = input('Debe diligenciar toda la información solicitada <ENTER>')
+    else:
+        axuP = int(Edad) #convierte el dato en entero.
+        AuxE = int(Estrato) #convierte el dato a entero.
+        if (axuP >= 15 and axuP <= 20) and (AuxE >= 1 and AuxE <= 2):
+            Mi_diccionario [id] = {Codigo, Nombres, Apellidos, Contacto, Correo, Edad, Estrato, Sexo, Telefono}
+            enter = input(f'\nEstudiante {Nombres} registrado con éxito')
+        elif (axuP >= 20 and axuP <= 35) and (AuxE >= 1 and AuxE <= 4):
+            Mi_diccionario [id] = {Codigo, Nombres, Apellidos, Contacto, Correo, Edad, Estrato, Sexo, Telefono}
+            enter = input(f'\nEstudiante {Nombres} registrado con éxito')
+        else:
+            ls_Estudiantes_pendientes.append(Contacto)
+
+def fnt_selector(op):
+    if op == '1':
+        idStr = input('\n\nId:  ')
+        CodigoStr = input('Codigo:  ')
+        NombresStr = input('Nombres completos:  ')
+        ApellidosStr = input('Apellidos completos:  ')
+        ContactoStr = input('Contacto: ')
+        CorreoStr = input('Correo:  ')
+        EdadStr = input('Edad:  ')
+        EstratoStr = input('Puntaje:  ')
+        SexoStr = input('Sexo:  ')
+        TelefonoStr = input('Telefono: ')
+        fnt_agregar(idStr, CodigoStr, NombresStr, ApellidosStr, ContactoStr, CorreoStr, EdadStr, EstratoStr, SexoStr, TelefonoStr)
+        
+
+while True:
+    os.system('cls')
+    opcion = input('1. Registrar\n2. Mostrar\n3. Salir\n- >  ')
+    if opcion == '1':
+        fnt_selector(opcion)
+    elif opcion == '2':
+        os.system('cls')
+        print('\nCantidad de registros: ',len(Mi_diccionario),'\n')
+        for clave, valor in Mi_diccionario.items():
+            print(f"{clave}: {valor}")
+        if ls_Estudiantes_pendientes:
+            print('\nLista de estudiantes pendientes:')
+            for id, Codigo, Nombres, Apellidos, Contacto, Correo, Edad, Estrato, Sexo, Telefono in ls_Estudiantes_pendientes:
+                print(f"{id}, {Codigo}, {Nombres}, {Apellidos}, {Contacto}, {Correo}, {Edad}, {Estrato}, {Sexo}, {Telefono}")
+        enter = input('\n\nPresione ENTER para continuar...')
+    elif opcion == '3':
+        break
